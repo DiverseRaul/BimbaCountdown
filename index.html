@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bimba Countdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v.01A1 1 0 0 0 12 2zm0 19a1 1 0 0 0-1 1v.01a1 1 0 1 0 2 0V22a1 1 0 0 0-1-1zm9-10a1 1 0 0 0-1 1 1 1 0 1 0 2 0 1 1 0 0 0-1-1zM3 12a1 1 0 0 0 1-1 1 1 0 1 0-2 0 1 1 0 0 0 1 1zm16.95-5.95a1 1 0 0 0 1.41-1.41l-.01-.01a1 1 0 0 0-1.41 1.41l.01.01zm-18.9 14.9a1 1 0 0 0 1.41-1.41l-.01-.01a1 1 0 1 0-1.41 1.41l.01.01zm18.9 0l.01-.01a1 1 0 1 0-1.41-1.41l-.01.01a1 1 0 0 0 1.41 1.41zM4.05 6.05l.01-.01a1 1 0 1 0-1.41-1.41L2.64 4.64a1 1 0 0 0 1.41 1.41z"/></svg>
+    </button>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Bimba Countdown Logo" class="nav-logo">
+                <h1>Bimba Countdown</h1>
+            </div>
+            <div class="nav-links">
+                <button id="home-btn" class="nav-btn active">Create</button>
+                <button id="countdowns-btn" class="nav-btn">My Countdowns</button>
+                <button id="world-clock-btn" class="nav-btn">World Clock</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Create Countdown Screen -->
+    <section id="create-screen" class="screen active-screen">
+        <div class="container">
+            <div class="countdown-creator">
+                <h2>Create Your Countdown</h2>
+                <form id="countdown-form">
+                    <div class="form-group">
+                        <label for="event-name">Event Name</label>
+                        <input type="text" id="event-name" placeholder="Enter event name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-description">Description (optional)</label>
+                        <textarea id="event-description" placeholder="Add details about your event" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-tasks">Tasks (optional)</label>
+                        <div class="tasks-container" id="tasks-container">
+                            <div class="task-input-group">
+                                <input type="text" class="task-input" placeholder="Add a task">
+                                <button type="button" class="add-task-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"/></svg>
+                                </button>
+                            </div>
+                            <div id="tasks-list" class="tasks-list"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date-time">Date & Time</label>
+                        <input type="datetime-local" id="date-time" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="background">Background Theme</label>
+                        <div class="theme-selector">
+                            <div class="theme-option">
+                                <input type="radio" id="theme-1" name="background" value="theme-1" checked>
+                                <label for="theme-1" class="theme-preview theme-1"></label>
+                            </div>
+                            <div class="theme-option">
+                                <input type="radio" id="theme-2" name="background" value="theme-2">
+                                <label for="theme-2" class="theme-preview theme-2"></label>
+                            </div>
+                            <div class="theme-option">
+                                <input type="radio" id="theme-3" name="background" value="theme-3">
+                                <label for="theme-3" class="theme-preview theme-3"></label>
+                            </div>
+                            <div class="theme-option">
+                                <input type="radio" id="theme-4" name="background" value="theme-4">
+                                <label for="theme-4" class="theme-preview theme-4"></label>
+                            </div>
+                            <div class="theme-option">
+                                <input type="radio" id="theme-5" name="background" value="theme-5">
+                                <label for="theme-5" class="theme-preview theme-5"></label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="create-btn">
+                        <span>Create Countdown</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Countdowns Screen -->
+    <section id="countdowns-screen" class="screen">
+        <div class="container">
+            <div class="countdowns-header">
+                <h2>My Countdowns</h2>
+                <button id="new-countdown-btn" class="action-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"/></svg>
+                    <span>New Countdown</span>
+                </button>
+            </div>
+            
+            <div id="countdowns-list" class="countdowns-list">
+                <!-- Countdowns will be added here dynamically -->
+                <div class="empty-state">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-8h4v2h-6V7h2v5z" fill="currentColor"/></svg>
+                    <p>No countdowns yet</p>
+                    <button id="create-first-btn" class="action-btn">Create Your First Countdown</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- World Clock Screen -->
+    <section id="world-clock-screen" class="screen">
+        <div class="container">
+            <div class="world-clock-header">
+                <h2>World Clock</h2>
+                <div class="timezone-selector">
+                    <select id="timezone-select">
+                        <option value="local">Local Time</option>
+                        <option value="UTC">UTC (Coordinated Universal Time)</option>
+                        <option value="America/New_York">New York (EST/EDT)</option>
+                        <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
+                        <option value="Europe/London">London (GMT/BST)</option>
+                        <option value="Europe/Paris">Paris (CET/CEST)</option>
+                        <option value="Asia/Tokyo">Tokyo (JST)</option>
+                        <option value="Asia/Shanghai">Shanghai (CST)</option>
+                        <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+                        <option value="Pacific/Auckland">Auckland (NZST/NZDT)</option>
+                    </select>
+                    <button id="add-timezone-btn" class="action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"/></svg>
+                        <span>Add</span>
+                    </button>
+                </div>
+            </div>
+            <div class="world-clock-container">
+                <div class="current-time-display">
+                    <div class="analog-clock">
+                        <div class="clock-face">
+                            <div class="hour-marks">
+                                <span class="hour-mark" style="--rotation: 0deg;">12</span>
+                                <span class="hour-mark" style="--rotation: 30deg;">1</span>
+                                <span class="hour-mark" style="--rotation: 60deg;">2</span>
+                                <span class="hour-mark" style="--rotation: 90deg;">3</span>
+                                <span class="hour-mark" style="--rotation: 120deg;">4</span>
+                                <span class="hour-mark" style="--rotation: 150deg;">5</span>
+                                <span class="hour-mark" style="--rotation: 180deg;">6</span>
+                                <span class="hour-mark" style="--rotation: 210deg;">7</span>
+                                <span class="hour-mark" style="--rotation: 240deg;">8</span>
+                                <span class="hour-mark" style="--rotation: 270deg;">9</span>
+                                <span class="hour-mark" style="--rotation: 300deg;">10</span>
+                                <span class="hour-mark" style="--rotation: 330deg;">11</span>
+                            </div>
+                            <div class="clock-hour"></div>
+                            <div class="clock-minute"></div>
+                            <div class="clock-second"></div>
+                            <div class="clock-center"></div>
+                        </div>
+                    </div>
+                    <div class="digital-time">
+                        <div id="current-time" class="time">00:00:00</div>
+                        <div id="current-date" class="date">Monday, January 1, 2023</div>
+                        <div id="current-timezone" class="timezone">Local Time</div>
+                    </div>
+                </div>
+                <div id="timezone-clocks" class="timezone-clocks">
+                    <!-- Additional timezone clocks will be added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown View Screen -->
+    <section id="countdown-view-screen" class="screen">
+        <div class="container">
+            <div class="countdown-display">
+                <div class="event-header">
+                    <h2 id="display-event-name">Your Event</h2>
+                    <p id="display-description" class="event-description"></p>
+                </div>
+                
+                <div class="countdown-timer">
+                    <div class="time-block">
+                        <span id="days">00</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="hours">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="minutes">00</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="seconds">00</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+                
+                <div id="tasks-display" class="tasks-display">
+                    <h3>Tasks</h3>
+                    <ul id="display-tasks" class="display-tasks-list"></ul>
+                </div>
+                
+                <div class="countdown-actions">
+                    <button id="edit-btn" class="action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.728 9.686l-1.414-1.414L5 17.586V19h1.414l9.314-9.314zm1.414-1.414l1.414-1.414-1.414-1.414-1.414 1.414 1.414 1.414zM7.242 21H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 21z" fill="currentColor"/></svg>
+                        <span>Edit</span>
+                    </button>
+                    <button id="share-btn" class="action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M13.12 17.023l-4.199-2.29a4 4 0 1 1 0-5.465l4.2-2.29a4 4 0 1 1 .959 1.755l-4.2 2.29a4.008 4.008 0 0 1 0 1.954l4.199 2.29a4 4 0 1 1-.959 1.755zM6 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm11-6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill="currentColor"/></svg>
+                        <span>Share</span>
+                    </button>
+                    <button id="back-to-list-btn" class="action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z" fill="currentColor"/></svg>
+                        <span>Back to List</span>
+                    </button>
+                    <button id="delete-btn" class="action-btn danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z" fill="currentColor"/></svg>
+                        <span>Delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Countdown Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Countdown</h3>
+                <button id="close-modal-btn" class="close-modal-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" fill="currentColor"/></svg>
+                </button>
+            </div>
+            <form id="edit-form">
+                <div class="form-group">
+                    <label for="edit-event-name">Event Name</label>
+                    <input type="text" id="edit-event-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-event-description">Description (optional)</label>
+                    <textarea id="edit-event-description" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-event-tasks">Tasks</label>
+                    <div class="tasks-container" id="edit-tasks-container">
+                        <div class="task-input-group">
+                            <input type="text" class="task-input" id="edit-task-input" placeholder="Add a task">
+                            <button type="button" id="edit-add-task-btn" class="add-task-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"/></svg>
+                            </button>
+                        </div>
+                        <div id="edit-tasks-list" class="tasks-list"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-date-time">Date & Time</label>
+                    <input type="datetime-local" id="edit-date-time" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Background Theme</label>
+                    <div class="theme-selector">
+                        <div class="theme-option">
+                            <input type="radio" id="edit-theme-1" name="edit-background" value="theme-1">
+                            <label for="edit-theme-1" class="theme-preview theme-1"></label>
+                        </div>
+                        <div class="theme-option">
+                            <input type="radio" id="edit-theme-2" name="edit-background" value="theme-2">
+                            <label for="edit-theme-2" class="theme-preview theme-2"></label>
+                        </div>
+                        <div class="theme-option">
+                            <input type="radio" id="edit-theme-3" name="edit-background" value="theme-3">
+                            <label for="edit-theme-3" class="theme-preview theme-3"></label>
+                        </div>
+                        <div class="theme-option">
+                            <input type="radio" id="edit-theme-4" name="edit-background" value="theme-4">
+                            <label for="edit-theme-4" class="theme-preview theme-4"></label>
+                        </div>
+                        <div class="theme-option">
+                            <input type="radio" id="edit-theme-5" name="edit-background" value="theme-5">
+                            <label for="edit-theme-5" class="theme-preview theme-5"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="cancel-edit-btn" class="action-btn secondary">Cancel</button>
+                    <button type="submit" class="action-btn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bimba Countdown. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
